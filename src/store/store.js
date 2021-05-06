@@ -5,9 +5,9 @@ let listners = [];
 let actions = {};
 
 export const useStore = () => {
-  const setState = useState(globalState)[1]; //Intrusted in second value in updating function
+  const setState = useState(globalState)[1]; //Interested in second value in updating function
 
-  //It will update react State with new Globalstate and it will rerender the commponent
+  //It will update react State with new Global State and it will rerender the component
   const dispatch = (actionIndentifire, payload) => {
     const newState = actions[actionIndentifire](globalState,payload);
     globalState = { ...globalState, ...newState };
@@ -17,13 +17,13 @@ export const useStore = () => {
     }
   };
 
-  // it will rerender when my custom hook will used
+  // it will re render when my custom hook will used
   useEffect(() => {
-    listners.push(setState); //Pushed setSate in listners array and value of setSate is captured here of that component which useing my custome hook
+    listners.push(setState); //Pushed setState in listener array and value of setState is captured here of that component which useing my custome hook
 
-    // Clean up funciton for remove the listener when then lister unmount here
+    // Clean up function for remove the listener when that lister unmount here
     return () => {
-      listners = listners.filter((li) => li !== setState); // listner not equal to setState because seSate which i added into listner here
+      listners = listners.filter((li) => li !== setState); // listener not equal to setState because seSate which i added into listeners 
     };
   }, [setState]);
 
@@ -32,10 +32,10 @@ export const useStore = () => {
 };
 
 export const initStore = (userActions, initialState) => {
-  //If initialSate not null then set globalState object and copy previous globalstate and initialstate using array destructuring 
+  //If initialState not null then set global State object and copy previous globalstate and initialstate using array destructuring
   if (initialState) {
     globalState = { ...globalState, ...initialState };
   }
-// Merge our action with gloabal Actions and userActions 
+// Merge your action with global Actions and userActions
   actions = { ...actions, ...userActions };
 };
