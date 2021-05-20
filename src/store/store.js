@@ -17,15 +17,15 @@ export const useStore = () => {
     }
   };
 
-  // it will re render when my custom hook will used
-  useEffect(() => {
-    listners.push(setState); //Pushed setState in listener array and value of setState is captured here of that component which useing my custome hook
+    // it will re render when my custom hook will used
+    useEffect(() => {
+      listners.push(setState); //Pushed setState in listener array and value of setState is captured here of that component which useing my custome hook
 
-    // Clean up function for remove the listener when that lister unmount here
-    return () => {
-      listners = listners.filter((li) => li !== setState); // listener not equal to setState because seSate which i added into listeners 
-    };
-  }, [setState]);
+      // Clean up function for remove the listener when that lister unmount here
+      return () => {
+        listners = listners.filter((li) => li !== setState); // listener not equal to setState because seSate which i added into listeners 
+      };
+    }, [setState]);
 
   // Return Global state and dispatch 
   return [globalState, dispatch];
